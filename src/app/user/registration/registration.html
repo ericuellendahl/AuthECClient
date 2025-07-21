@@ -1,0 +1,74 @@
+<div class="mb-4 h2 text-success">Sign Up</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <input
+      class="form-control bg-body-secondary"
+      placeholder="User Name"
+      formControlName="username"
+    />
+    <div
+      class="error-feedback"
+      *ngIf="
+        hasDisplayableError('username') &&
+        form.controls['username'].hasError('required')
+      "
+    >
+      Please enter your user name.
+    </div>
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control bg-body-secondary"
+      placeholder="E-amil"
+      formControlName="email"
+    />
+    <div class="error-feedback" *ngIf="hasDisplayableError('email')">
+      <div *ngIf="form.controls['email'].hasError('required')">
+        Please enter your email address.
+      </div>
+      <div *ngIf="form.controls['email'].hasError('email')">
+        Please enter a valid email address.
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control bg-body-secondary"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <div class="error-feedback" *ngIf="hasDisplayableError('password')">
+      <ng-container [ngSwitch]="form.controls['password'].errors | firstkey">
+        <div *ngSwitchCase="'required'">
+          Please enter your password.
+        </div>
+        <div *ngSwitchCase="'minlength'">
+          Atleast 6 characters are required.
+        </div>
+        <div *ngSwitchCase="'pattern'">
+          One or more special characters are required.
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control bg-body-secondary"
+      placeholder="Confirm Password"
+      formControlName="confirmPassword"
+    />
+    <div
+      class="error-feedback"
+      *ngIf="
+        hasDisplayableError('confirmPassword') &&
+        form.controls['confirmPassword'].hasError('passwordMatchValidator')
+      "
+    >
+      Passwords do not match.
+    </div>
+  </div>
+  <div class="mt-4">
+    <button class="btn btn-success w-100 rounded-3">Register</button>
+  </div>
+</form>
