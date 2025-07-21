@@ -65,10 +65,15 @@ export class Registration {
         },
         error: (error) => {
           console.error('Error creating user', error);
+          if (error.error && error.error.message) {
+            error.array.forEach((error: any) => {
+              this.toastr.error(error, 'Error');
+            });
+          } else {
+            this.toastr.error('Erro 500 not found server', 'Internal Server Error');
+          }
         },
       });
-    } else {
-      console.error(this.form);
     }
   }
 
