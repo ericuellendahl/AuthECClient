@@ -20,14 +20,14 @@ export class Registration {
   passwordMatchValidator(control: any) {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
-    if (
-      password &&
-      confirmPassword &&
-      password.value !== confirmPassword.value
-    ) {
+    if (!password || !confirmPassword) return;
+
+    if (password.value !== confirmPassword.value) {
       confirmPassword.setErrors({ passwordMismatch: true });
     } else {
-      confirmPassword.setErrors(null);
+      if (confirmPassword.hasError('passwordMismatch')) {
+        confirmPassword.setErrors(null);
+      }
     }
   }
 

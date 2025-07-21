@@ -62,7 +62,7 @@
       class="error-feedback"
       *ngIf="
         hasDisplayableError('confirmPassword') &&
-        form.controls['confirmPassword'].hasError('passwordMatchValidator')
+        form.controls['confirmPassword'].hasError('passwordMismatch')
       "
     >
       Passwords do not match.
