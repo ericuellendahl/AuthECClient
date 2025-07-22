@@ -13,4 +13,8 @@ export class Auth {
     return this.http.post(`${this.baseUrl}/Auth/register`, formData);
   }
 
+   signin(formData: any) {
+    return this.http.post(`${this.baseUrl}/Auth/login`, formData);
+  }
+
 }

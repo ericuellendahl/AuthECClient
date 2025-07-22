@@ -1,4 +1,10 @@
-<div class="mb-4 h2 text-success">Sign Up</div>
+<div class="mb-4">
+  <h2 class="text-success">Sign Up</h2>
+  <div>
+    Already have an account?
+    <a routerLink="/signin" class="text-decoration-none fw-medium text-success">Sing in</a>
+  </div>
+</div>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="mb-3">
@@ -40,9 +46,7 @@
     />
     <div class="error-feedback" *ngIf="hasDisplayableError('password')">
       <ng-container [ngSwitch]="form.controls['password'].errors | firstkey">
-        <div *ngSwitchCase="'required'">
-          Please enter your password.
-        </div>
+        <div *ngSwitchCase="'required'">Please enter your password.</div>
         <div *ngSwitchCase="'minlength'">
           Atleast 6 characters are required.
         </div>
